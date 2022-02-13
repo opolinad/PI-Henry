@@ -28,13 +28,4 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
   });
-  sequelize.define('genre', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey:true
-    },
-    name: {
-      type: DataTypes.STRING,
-    }
-  });
 };
