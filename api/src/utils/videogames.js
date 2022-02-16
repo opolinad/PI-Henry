@@ -18,7 +18,7 @@ const getAllVideogames=async (numGames=100)=>{
         return games.map(game=>({
             name:game.name,
             img:game.background_image,
-            genres: game.genres.map(genre=>genre.id).join(" "),
+            genres: game.genres.map(genre=>genre.name).join(" "),
             rating: game.rating
         }))
     } catch (error) {

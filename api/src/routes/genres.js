@@ -3,7 +3,7 @@ const router = Router();
 const {getAllGenres} = require("../utils/genres");
 
 router.get('/',async (req,res)=>{
-    await getAllGenres();
-    res.sendStatus(200);
+    let genres=await getAllGenres();
+    res.status(200).send(genres);
 })
 module.exports = router;
