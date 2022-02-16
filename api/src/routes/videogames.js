@@ -4,8 +4,8 @@ const {getAllVideogames, getVideogamesByName} = require("../utils/videogames");
 
 router.route('/')
     .get(async(req,res)=>{
-        const {name}=req.query;
-        name?(games =await getVideogamesByName(name)):(games =await getAllVideogames());
+        const {name,gamesQty}=req.query;
+        name?(games =await getVideogamesByName(name)):(games =await getAllVideogames(gamesQty));
         return res.send(games);
 
     })
