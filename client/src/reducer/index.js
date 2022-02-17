@@ -1,4 +1,3 @@
-import { bindActionCreators } from "redux";
 import {GET_ALL,GET_BY_GENRE, GET_BY_CONDITION, GET_DETAIL, GET_BY_NAME, GET_ALL_GENRES, ADD_VIDEOGAME, ORDER, RESULTS_PAGE} from "../actions";
 
 const initialState = {

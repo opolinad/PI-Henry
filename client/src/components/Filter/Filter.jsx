@@ -7,6 +7,7 @@ export default function Filter (props){
     const genres = useSelector((state)=>state.genres);
     const dispatch = useDispatch();
     const gamesToShow=props.gamesToShow;
+    const resultsPerPage=props.resultsPerPage;
     function onRadioChange(e){
         switch (e.target.value) {
             case "all":
@@ -21,16 +22,20 @@ export default function Filter (props){
         }
     }
     function onSortChange(e){
+        props.modifyActualPage(1);
         dispatch(orderArray(e.target.value));
     }
     function onGenreChange(e){
+        props.modifyActualPage(1);
         dispatch(getByGenre(e.target.value));
     }
     function onGamesQtyChange(e){
+        props.modifyActualPage(1);
         props.modifyGamesToShow(e.target.value);
     }
     function onResultsPerPageChange(e){
-        props.modifyResultsPerPageChange(e.target.value);
+        props.modifyActualPage(1);
+        props.modifyResultsPerPage(e.target.value);
     }
     return(
         <div>
@@ -56,7 +61,7 @@ export default function Filter (props){
                 <option value="rating-des">Rating 5-0</option>
             </select>
             <label htmlFor="results-page">Resultados por página:</label>
-            <select id="results-page"  value={15} onChange={onResultsPerPageChange}>
+            <select id="results-page"  value={resultsPerPage} onChange={onResultsPerPageChange}>
                 <option value="10">10</option>
                 <option value="15">15</option>
                 <option value="20">20</option>
