@@ -19,7 +19,8 @@ const getAllVideogames=async (numGames=100)=>{
             name:game.name,
             img:game.background_image,
             genres: game.genres.map(genre=>genre.name).join(" "),
-            rating: game.rating
+            rating: game.rating,
+            created:game.created?game.created:false
         }))
     } catch (error) {
         console.log(error);

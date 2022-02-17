@@ -16,6 +16,7 @@ const getAllGenres=async()=>{
         });
         let genresRes = await Genre.findAll({attributes:["name"]})
         let genresArr=genresRes.map(genre=>genre.dataValues.name);
+        genresArr.sort();
         return genresArr;
     } catch (error) {
         console.error(error);
