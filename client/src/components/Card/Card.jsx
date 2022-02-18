@@ -9,13 +9,13 @@ export default function Card(props) {
         dispatch(getDetail(props.id));
     }
     return (
-        // <Link to={`/details/${props.name}`}>
-            <div onClick={onGameClick}>
-                <img src={props.img} alt="videogame image" style={{ maxWidth: "300px" }} />
-                <p>{`${props.num + 1}. ${props.name}`}</p>
-                <p>{props.genres}</p>
-                <p>{props.rating}</p>
+        <Link to={`/details`}>
+            <div onClick={onGameClick} style={{zIndex:2}}>
+                <img src={props.img} alt="videogame image" style={{ maxWidth: "300px", zIndex:1 }} />
+                <p style={{zIndex:1}}>{`${props.num + 1}. ${props.name}`}</p>
+                <p style={{zIndex:1}}>{props.genres}</p>
+                <p style={{zIndex:1}}>{props.rating}</p>
             </div>
-        // </Link>
+        </Link>
     );
 }

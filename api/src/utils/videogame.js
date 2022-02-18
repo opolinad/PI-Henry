@@ -4,18 +4,16 @@ const axios = require("axios");
 const { Videogame, Genre } = require("../db")
 
 const videogameDetail=async (id)=>{
-    console.log("id",id);
     try {
         let result = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
-        console.log("resultado",result.data);
         let gameDetails={
             img:result.data.background_image,
             name:result.data.name,
-            genres:result.data.genres.map(genre=>genre.id).join(" "),
-            description: result.data.description,
+            genres:result.data.genres.map(genre=>genre.name).join(" "),
+            description: result.data.description_raw,
             released:result.data.released,
             rating:result.data.rating,
-            platforms:result.data.parent_platforms.map(platform=>platform.platform.id).join(" ")
+            platforms:result.data.parent_platforms.map(platform=>platform.platform.name).join(" ")
         }
         return gameDetails;
     } catch (error) {
