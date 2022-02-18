@@ -1,14 +1,15 @@
-// género, existente -- ordenar por alfabetico o rating -- juegos por página
+// falta hacer la verificación de un filtro sobre otro
 import React from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import {getAllVideogames, getByCondition, getByGenre, orderArray } from '../../actions';
+import { getAllVideogames, getByCondition, getByGenre, orderArray } from '../../actions';
 
-export default function Filter (props){
-    const genres = useSelector((state)=>state.genres);
+export default function Filter(props) {
+    const genres = useSelector((state) => state.genres);
     const dispatch = useDispatch();
-    const gamesToShow=props.gamesToShow;
-    const resultsPerPage=props.resultsPerPage;
-    function onRadioChange(e){
+    const gamesToShow = props.gamesToShow;
+    const resultsPerPage = props.resultsPerPage;
+    function onRadioChange(e) {
         switch (e.target.value) {
             case "all":
                 dispatch(getAllVideogames(gamesToShow));
@@ -21,36 +22,36 @@ export default function Filter (props){
                 break;
         }
     }
-    function onSortChange(e){
-        props.modifyActualPage(1);
+    function onSortChange(e) {
         dispatch(orderArray(e.target.value));
+        props.modifyOrdered();
     }
-    function onGenreChange(e){
+    function onGenreChange(e) {
         props.modifyActualPage(1);
         dispatch(getByGenre(e.target.value));
     }
-    function onGamesQtyChange(e){
+    function onGamesQtyChange(e) {
         props.modifyActualPage(1);
         props.modifyGamesToShow(e.target.value);
     }
-    function onResultsPerPageChange(e){
+    function onResultsPerPageChange(e) {
         props.modifyActualPage(1);
         props.modifyResultsPerPage(e.target.value);
     }
-    return(
+    return (
         <div>
             <div>
-                <input type="radio" name="filter-created" value="all" id="all" onChange={(e)=>onRadioChange(e)}/>
+                <input type="radio" name="filter-created" value="all" id="all" onChange={(e) => onRadioChange(e)} />
                 <label htmlFor="all">Todos</label>
-                <input type="radio" name="filter-created" value="created" id="created" onChange={(e)=>onRadioChange(e)}/>
+                <input type="radio" name="filter-created" value="created" id="created" onChange={(e) => onRadioChange(e)} />
                 <label htmlFor="created">Creados</label>
-                <input type="radio" name="filter-created" value="existing" id="existing" onChange={(e)=>onRadioChange(e)}/>
+                <input type="radio" name="filter-created" value="existing" id="existing" onChange={(e) => onRadioChange(e)} />
                 <label htmlFor="existing">Existentes</label>
             </div>
             <label htmlFor="filter-genres">Filtar por género:</label>
             <select id="filter-genres" onChange={onGenreChange}>
                 <option value="seleccionar">Seleccionar género</option>
-                {genres.map((genre, index)=> <option key={index} value={genre}>{genre}</option>)}
+                {genres.map((genre, index) => <option key={index} value={genre}>{genre}</option>)}
             </select>
             <label htmlFor="order">Ordenar por:</label>
             <select id="order" onChange={onSortChange}>
@@ -61,7 +62,7 @@ export default function Filter (props){
                 <option value="rating-des">Rating 5-0</option>
             </select>
             <label htmlFor="results-page">Resultados por página:</label>
-            <select id="results-page"  value={resultsPerPage} onChange={onResultsPerPageChange}>
+            <select id="results-page" value={resultsPerPage} onChange={onResultsPerPageChange}>
                 <option value="10">10</option>
                 <option value="15">15</option>
                 <option value="20">20</option>
@@ -69,7 +70,7 @@ export default function Filter (props){
                 <option value="50">50</option>
             </select>
             <label htmlFor="games-quantity">Número de juegos para mostrar</label>
-            <input type="text" id="games-quantity" value={gamesToShow} onChange={onGamesQtyChange}/>
+            <input type="text" id="games-quantity" value={gamesToShow} onChange={onGamesQtyChange} />
         </div>
     );
 }

@@ -32,7 +32,7 @@ export function getDetail (id){
 }
 export function getByName (name){
     return async (dispatch)=>{
-        let games = await axios.get(`http://localhost:3001/videogames/${name}`);
+        let games = await axios.get(`http://localhost:3001/videogames?name=${name}`);
         return dispatch({type:GET_BY_NAME, payload:games.data})
     }
 }

@@ -16,6 +16,7 @@ const getAllVideogames=async (numGames=100)=>{
             games=games.slice(0,numGames)
         }
         return games.map(game=>({
+            id:game.id,
             name:game.name,
             img:game.background_image,
             genres: game.genres.map(genre=>genre.name).join(" "),
@@ -36,9 +37,10 @@ const getVideogamesByName = async (name)=>{
             return "No se ha encontrado ningún juego que coincida con los parámetros de búsqueda"
         }
         return games.map(game=>({
+            id:game.id,
             name:game.name,
             img:game.background_image,
-            genres: game.genres.map(genre=>genre.id).join(" "),
+            genres: game.genres.map(genre=>genre.name).join(" "),
             rating: game.rating
         }));
     } catch (error) {

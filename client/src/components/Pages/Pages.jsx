@@ -1,36 +1,38 @@
 import React, { useState } from "react";
-export default function Pages({ gamesToShow, resultsPerPage, actualPage, modifyActualPage }) {
+export default function Pages({ gamesToShow, resultsPerPage, modifyActualPage }) {
     const numPages = Math.ceil(gamesToShow / resultsPerPage);
-    let [renderPage, setRenderPage] = useState(numPages>1?2:1);
+    let [renderPage, setRenderPage] = useState(2);
     function onNumberClick(e) {
-        alert(e.target.id)
-        setRenderPage(e.target.value)
         modifyActualPage(e.target.value);
     }
     function onBeforeClick() {
-        renderPage - 1 > 0 && setRenderPage(() => renderPage--);
+        if ((renderPage - 1) % 3 === 0) {
+            return setRenderPage(renderPage -= 2);
+        }
+        renderPage >= 5 && setRenderPage(renderPage -= 3);
     }
     function onAfterClick() {
-        Number(renderPage) + 1 <= numPages && setRenderPage(() => renderPage++);
+        renderPage + 2 === numPages && setRenderPage(numPages);
+        numPages - Number(renderPage) >= 3 && setRenderPage(renderPage += 3);
     }
-    if(numPages===1){
-        return <div/>;
-    }// Hay un bug ya que toca presionar el botón dos veces
+    if (numPages === 1) {
+        return <div />;
+    }
     return (<div>
 
-        <button onClick={onBeforeClick}>a</button>
+        {renderPage > 2 && <button onClick={onBeforeClick}>a</button>}
 
-        {renderPage - 1 > 0 && <button id="1" onClick={onNumberClick} value={renderPage - 1}>{renderPage - 1}</button>}
+        {(renderPage + 1) % 3 === 0 && <button id="1" onClick={onNumberClick} value={renderPage - 1}>{renderPage - 1}</button>}
 
         <button id="2" onClick={onNumberClick} value={renderPage}>{renderPage}</button>
 
         {Number(renderPage) + 1 <= numPages && <button id="3" onClick={onNumberClick} value={Number(renderPage) + 1}>{Number(renderPage) + 1}</button>}
 
-        <button onClick={onAfterClick}>d</button>
+        {numPages >= renderPage + 2 && <button onClick={onAfterClick}>d</button>}
     </div>);
-  /*   let pages=[];
-    for (let i = 1; i <= numPages; i++) {
-        pages.push(i);
-    }
-    return pages.map((page, index)=><button key={index} onClick={onNumberClick} value={index+1}>{page}</button>) */
+    /*   let pages=[];
+      for (let i = 1; i <= numPages; i++) {
+          pages.push(i);
+      }
+      return pages.map((page, index)=><button key={index} onClick={onNumberClick} value={index+1}>{page}</button>) */
 }
