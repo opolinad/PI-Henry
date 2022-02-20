@@ -9,7 +9,7 @@ export default function Card(props) {
         dispatch(getDetail(props.id));
     }
     return (
-        <Link to={`/details`}>
+        <Link to={`/details/${props.name}`}>
             <div onClick={onGameClick} style={{zIndex:2}}>
                 <img src={props.img} alt="videogame image" style={{ maxWidth: "300px", zIndex:1 }} />
                 <p style={{zIndex:1}}>{`${props.num + 1}. ${props.name}`}</p>

@@ -30,7 +30,7 @@ function reducer(state = initialState, action) {
         case GET_ALL_GENRES:
             return { ...state, genres: action.payload };
         case ADD_VIDEOGAME:
-            return { ...state, videogames: action.payload };
+            return { ...state};
         case ORDER:
             arr = state.videogames !== state.videogamesFilter ? state.videogamesFilter : state.videogames;
             switch (action.payload) {

@@ -31,7 +31,7 @@ const createVideogame = async (name, description, released, rating, genres, plat
             platforms
         }
     });
-    await game[0].addGenres(genres.split(" "));
+    genres.map(genre=>game[0].addGenres(genre));
 }
 
 module.exports={
