@@ -39,7 +39,7 @@ export default function Home() {
             <NavBar />
             <Filter modifyGamesToShow={modifyGamesToShow} modifyResultsPerPage={modifyResultsPerPage} gamesToShow={gamesToShow} resultsPerPage={resultsPerPage} modifyActualPage={modifyActualPage} modifyOrdered={modifyOrdered}/>
             {videogames.slice((actualPage - 1) * resultsPerPage, (actualPage - 1) * resultsPerPage + resultsPerPage).map((game, index) => <Card key={index} num={index} id={game.id} name={game.name} img={game.img} genres={game.genres} rating={game.rating} />)}
-            <Pages gamesToShow={gamesToShow} resultsPerPage={resultsPerPage} modifyActualPage={modifyActualPage} />
+            <Pages resultsPerPage={resultsPerPage} modifyActualPage={modifyActualPage} />
         </div>
     );
 }

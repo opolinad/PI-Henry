@@ -1,7 +1,13 @@
 import React, { useState } from "react";
-export default function Pages({ gamesToShow, resultsPerPage, modifyActualPage }) {
-    const numPages = Math.ceil(gamesToShow / resultsPerPage);
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+export default function Pages({ resultsPerPage, modifyActualPage }) {
+    const videogames = useSelector((state) => state.videogamesFilter);
+    const numPages = Math.ceil( videogames.length/ resultsPerPage);
     let [renderPage, setRenderPage] = useState(2);
+    useEffect(()=>{
+        setRenderPage(2);
+    },[videogames])
     function onNumberClick(e) {
         modifyActualPage(e.target.value);
     }
@@ -15,7 +21,7 @@ export default function Pages({ gamesToShow, resultsPerPage, modifyActualPage })
         renderPage + 2 === numPages && setRenderPage(numPages);
         numPages - Number(renderPage) >= 3 && setRenderPage(renderPage += 3);
     }
-    if (numPages === 1) {
+    if (numPages === 1 || numPages === 0) {
         return <div />;
     }
     return (<div>
