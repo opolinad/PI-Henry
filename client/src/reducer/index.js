@@ -16,12 +16,15 @@ function reducer(state = initialState, action) {
         case GET_BY_GENRE:
             arr = state.videogames !== state.videogamesFilter ? state.videogamesFilter : state.videogames;
             data = action.payload ? arr.filter(game => game.genres.includes(action.payload)) : state.videogames;
-            return { ...state, videogamesFilter: data };
+            var prueba={ ...state, videogamesFilter: data };
+            return prueba;
+
         case GET_BY_CONDITION:
-            arr = state.videogames !== state.videogamesFilter ? state.videogamesFilter : state.videogames;
-            data = action.payload === "created" ?
-                arr.filter(game => game.created) :
-                arr.filter(game => !game.created);
+            data = action.payload === "all" ?
+                state.videogames:
+                (action.payload==="created"?
+                state.videogames.filter(game => game.created) :
+                state.videogames.filter(game => !game.created));
             return { ...state, videogamesFilter: data };
         case GET_DETAIL:
             return { ...state, gameDetail: action.payload };
@@ -30,7 +33,7 @@ function reducer(state = initialState, action) {
         case GET_ALL_GENRES:
             return { ...state, genres: action.payload };
         case ADD_VIDEOGAME:
-            return { ...state};
+            return { ...state };
         case ORDER:
             arr = state.videogames !== state.videogamesFilter ? state.videogamesFilter : state.videogames;
             switch (action.payload) {

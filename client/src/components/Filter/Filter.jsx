@@ -7,36 +7,64 @@ import { getAllVideogames, getByCondition, getByGenre, orderArray } from '../../
 export default function Filter(props) {
     const genres = useSelector((state) => state.genres);
     const dispatch = useDispatch();
+    const [filtered, setFiltered] = useState({
+        created: "all",
+        genre: "all",
+        sort: "all"
+    });
     const gamesToShow = props.gamesToShow;
     const resultsPerPage = props.resultsPerPage;
     function onRadioChange(e) {
-        switch (e.target.value) {
-            case "all":
-                dispatch(getAllVideogames(gamesToShow));
-                break;
-            case "created":
-                dispatch(getByCondition("created"));
-                break;
-            case "existing":
-                dispatch(getByCondition("existing"));
-                break;
+        setFiltered({ ...filtered, created: e.target.value });
+        props.modifyActualPage(1);
+        if (filtered.genre !== "all") {
+            dispatch(getByCondition(e.target.value));
+            dispatch(getByGenre(filtered.genre));
+        } else {
+            dispatch(getByCondition(e.target.value));
+        }
+    }
+    function onGenreChange(e) {
+        setFiltered({ ...filtered, genre: e.target.value });
+        props.modifyActualPage(1);
+        if (filtered.genre !== "all") {
+            dispatch(getByCondition(filtered.created));
+            dispatch(getByGenre(e.target.value));
+        } else if (filtered.sort !== "all") {
+            dispatch(getByGenre(e.target.value));
+            dispatch(orderArray(filtered.sort));
+        } else {
+            dispatch(getByGenre(e.target.value));
         }
     }
     function onSortChange(e) {
+        setFiltered({ ...filtered, sort: e.target.value });
         dispatch(orderArray(e.target.value));
         props.modifyOrdered();
-    }
-    function onGenreChange(e) {
-        props.modifyActualPage(1);
-        dispatch(getByGenre(e.target.value));
     }
     function onGamesQtyChange(e) {
         props.modifyActualPage(1);
         props.modifyGamesToShow(e.target.value);
+        onDeleteFiltersClick();
     }
     function onResultsPerPageChange(e) {
         props.modifyActualPage(1);
         props.modifyResultsPerPage(e.target.value);
+        onDeleteFiltersClick();
+    }
+    function onDeleteFiltersClick() {
+        setFiltered({
+            created: "all",
+            genre: "all",
+            sort: "all"
+        });
+        dispatch(getByCondition("all"));
+        for (const button of document.getElementsByName("filter-created")) {
+            button.checked = false;
+        }
+        document.getElementById("filter-genres").value = "seleccionar";
+        document.getElementById("order").value = "orderBy";
+
     }
     return (
         <div>
@@ -71,6 +99,7 @@ export default function Filter(props) {
             </select>
             <label htmlFor="games-quantity">Número de juegos para mostrar</label>
             <input type="text" id="games-quantity" value={gamesToShow} onChange={onGamesQtyChange} />
+            <button onClick={onDeleteFiltersClick}>Borrar filtros</button>
         </div>
     );
 }
