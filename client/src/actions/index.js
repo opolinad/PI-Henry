@@ -8,7 +8,6 @@ export const GET_ALL_GENRES = "GET_ALL_GENRES";
 export const ADD_VIDEOGAME = "ADD_VIDEOGAME";
 export const ORDER = "ORDER";
 
-
 export function getAllVideogames(gamesQty) {
     return async (dispatch) => {
         let url = gamesQty ? `http://localhost:3001/videogames?gamesQty=${gamesQty}` : `http://localhost:3001/videogames`

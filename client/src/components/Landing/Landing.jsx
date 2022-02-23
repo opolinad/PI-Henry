@@ -1,13 +1,18 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import "./landing.css";
+import mainImage from "../../Images/Imagen fondo.png";
 
- export default function LandingPage() {
-     return(
-         <div>
-             <h1>Bienvenido</h1>
+export default function LandingPage() {
+    return (
+        <div id="div-container">
+            {/* <img id="img-main" src={mainImage} /> */}
+            <h1>Info games</h1>
+            <p>El lugar donde puedes encontrar</p>
+            <p>toda la información sobre los videojuegos</p>
             <Link to="/home">
-                <button>Ingresar</button>
-             </Link>
-         </div>
-     );
- }
+                <a id="btn-getin">EMPEZAR</a>
+            </Link>
+        </div>
+    );
+}
