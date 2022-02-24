@@ -37,3 +37,16 @@
         position: static;
         text-align: justify;
 }
+#img-loading-detail{
+    max-height: 250px;
+    display: block;
+    margin: 100px auto;
+    margin-bottom: 0;
+}
+#p-loading-detail{
+    text-align: center;
+    margin:0 auto;
+    position: static;
+    padding: 0;
+    text-shadow: none;
+}

@@ -1,10 +1,11 @@
-import { GET_ALL, GET_BY_GENRE, GET_BY_CONDITION, GET_DETAIL, GET_BY_NAME, GET_ALL_GENRES, ADD_VIDEOGAME, ORDER } from "../actions";
+import { GET_ALL, GET_BY_GENRE, GET_BY_CONDITION, GET_DETAIL, GET_BY_NAME, GET_ALL_GENRES, ADD_VIDEOGAME, ORDER, LOADING } from "../actions";
 
 const initialState = {
     videogames: [],
     videogamesFilter: [],
     genres: [],
     gameDetail: {},
+    loading:false
 }
 
 function reducer(state = initialState, action) {
@@ -16,15 +17,15 @@ function reducer(state = initialState, action) {
         case GET_BY_GENRE:
             arr = state.videogames !== state.videogamesFilter ? state.videogamesFilter : state.videogames;
             data = action.payload ? arr.filter(game => game.genres.includes(action.payload)) : state.videogames;
-            var prueba={ ...state, videogamesFilter: data };
+            var prueba = { ...state, videogamesFilter: data };
             return prueba;
 
         case GET_BY_CONDITION:
             data = action.payload === "all" ?
-                state.videogames:
-                (action.payload==="created"?
-                state.videogames.filter(game => game.created) :
-                state.videogames.filter(game => !game.created));
+                state.videogames :
+                (action.payload === "created" ?
+                    state.videogames.filter(game => game.created) :
+                    state.videogames.filter(game => !game.created));
             return { ...state, videogamesFilter: data };
         case GET_DETAIL:
             return { ...state, gameDetail: action.payload };
@@ -70,8 +71,9 @@ function reducer(state = initialState, action) {
                     arr.sort((a, b) => b.rating - a.rating)
                     break;
             }
-            console.log(arr);
             return { ...state, videogamesFilter: arr };
+        case LOADING:
+            return {...state, loading:action.payload};
         default:
             return state;
     }

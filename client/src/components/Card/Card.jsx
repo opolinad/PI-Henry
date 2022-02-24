@@ -1,12 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getDetail } from "../../actions";
+import { getDetail, setLoading } from "../../actions";
 import "./Card.css";
 
 export default function Card(props) {
     const dispatch=useDispatch();
     function onGameClick(e) {
+        dispatch(setLoading(true));
         dispatch(getDetail(props.id));
     }
     return (

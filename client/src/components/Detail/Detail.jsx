@@ -1,16 +1,25 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import NavBar from "../NavBar/NavBar";
+import loadingGif from "../../Images/Yoda animation.gif"
 import "./Detail.css";
+
 export default function Detail() {
-    const detail = useSelector((state) => state.gameDetail)
+    const detail = useSelector((state) => state.gameDetail);
+    const loading = useSelector((state) => state.loading);
+    if (loading) {
+        return (<div>
+            <NavBar />
+            <img id="img-loading-detail" src={loadingGif} />
+            <p id="p-loading-detail">Yoda está cargando la información</p>
+        </div>);
+    }
     return (<div id="detail-container">
         <NavBar />
         <div id="detail-wraper">
             <div id="detail-img">
                 <img src={detail.img} alt="videogame image" />
             </div>
-
             <h1>{detail.name}</h1>
             <p>Géneros:</p>
             <p>{detail.genres}</p>
@@ -23,7 +32,6 @@ export default function Detail() {
             <p><a href={`https://www.google.com/search?q=${detail.name}&tbm=shop`} target="_blank"> Dónde comprar</a></p>
             <p>Descripción</p>
             <p>{detail.description}</p>
-
         </div>
     </div>);
 }

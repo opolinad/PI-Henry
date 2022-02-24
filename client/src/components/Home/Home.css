@@ -14,3 +14,13 @@
     overflow-y: auto;
     height: 67vh;
 }
+#img-loading{
+    max-height: 300px;
+    display: block;
+}
+#p-loading{
+    margin:0;
+    padding: 0;
+    position: static;
+    text-shadow: none;
+}
