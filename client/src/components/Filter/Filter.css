@@ -1,0 +1,63 @@
+#filter-container{
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid white;
+}
+#div-radio, #div-genero, #div-order, #div-pages{
+    text-align: center;
+    height: 120px;
+}
+#div-radio{
+    text-align: left;
+}
+input[type="radio"]{
+    width: 15px;
+    margin: 10px;
+}
+label{
+    font-size: 0.8em;
+}
+.container-radioInput label{
+    position: relative;
+    top:-4px
+}
+.container-radioInput label:hover, input[type="radio"]:hover~label, #clear-filters:hover{
+    text-shadow:
+    0 0 11px #fff,
+    0 0 19px #fff,
+    0 0 40px #0fa,
+    0 0 80px #0fa,
+    0 0 90px #0fa,
+    0 0 100px #0fa,
+    0 0 150px #0fa;
+}
+
+#div-genero label,#div-order label,#div-pages label {
+    display: block;
+    margin: 12px 5px;
+}
+#div-genero select, #div-pages select, #div-order select{
+    background-color: transparent;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.6em;
+    border: none;
+}
+#div-genero select:focus, #div-pages select:focus, #div-order select:focus{
+   outline: none;
+}
+#div-genero option, #div-pages option, #div-order option{
+    background-color: black;
+}
+#div-pages input{
+    width: 50px;
+    text-align: center;
+}
+#clear-filters{
+    background-color: transparent;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8em;
+    border: none;
+    cursor: pointer;
+}

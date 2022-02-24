@@ -1,0 +1,58 @@
+span{
+    padding: 20px;
+    color: white;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+input{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    width: 250px;
+    margin-right: 20px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7em;
+    font-weight: lighter;
+    height: 2em;
+}
+input::placeholder{
+    color: rgb(194, 194, 194);
+    font-size: 0.7em;
+    font-family: 'Press Start 2P', cursive;
+}
+input:focus{
+    outline: none;
+}
+span:hover{
+
+    text-shadow:
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px #0fa,
+        0 0 80px #0fa,
+        0 0 90px #0fa,
+        0 0 100px #0fa,
+        0 0 150px #0fa;
+}
+#navbar-container{
+    width: 100vw;
+    height: 70px;
+    border-bottom: 2px solid white;
+}
+#img-icon{
+    max-width: 70px;
+    position: absolute;
+    left: 10px;
+    top:8px;
+}
+#searchbar{
+    position: absolute;
+    right: 10px;
+    top:26px
+}
+#links-container{
+    position: absolute;
+    right: 430px;
+    top:26px
+}
