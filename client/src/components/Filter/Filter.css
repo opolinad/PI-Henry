@@ -2,6 +2,11 @@
     display: flex;
     justify-content: space-around;
     border-bottom: 1px solid white;
+    position: sticky;
+    top: 10vh;
+    left:0;
+    height: 18vh;
+    width: 100vw;
 }
 #div-radio, #div-genero, #div-order, #div-pages{
     text-align: center;

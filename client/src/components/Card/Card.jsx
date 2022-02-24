@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getDetail } from "../../actions";
+import "./Card.css";
 
 export default function Card(props) {
     const dispatch=useDispatch();
@@ -10,11 +11,11 @@ export default function Card(props) {
     }
     return (
         <Link to={`/details/${props.name}`}>
-            <div onClick={onGameClick} style={{zIndex:2}}>
-                <img src={props.img} alt="videogame image" style={{ maxWidth: "300px", zIndex:1 }} />
-                <p style={{zIndex:1}}>{`${props.num + 1}. ${props.name}`}</p>
-                <p style={{zIndex:1}}>{props.genres}</p>
-                <p style={{zIndex:1}}>{props.rating}</p>
+            <div id="card-container" onClick={onGameClick} >
+                <img src={props.img} alt="videogame image" />
+                <p>{`${props.num + 1}. ${props.name}`}</p>
+                <p>{`Géneros: ${props.genres}`}</p>
+                <p>{`Rating: ${props.rating}`}</p>
             </div>
         </Link>
     );

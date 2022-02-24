@@ -1,0 +1,16 @@
+#home-container{
+    background-image: url("../../Images/Fondo\ de\ pantalla.png");
+    width: 100vw;
+    height: 100vh;
+    box-shadow: inset 100vw 0vh rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+}
+#cards-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    overflow-y: auto;
+    height: 67vh;
+}
