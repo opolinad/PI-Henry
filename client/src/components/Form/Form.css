@@ -1,0 +1,120 @@
+#form-container{
+    background-image: url("../../Images/Fondo\ de\ pantalla.png");
+    width: 100vw;
+    height: 100vh;
+    box-shadow: inset 100vw 0vh rgba(0, 0, 0, 0.8);
+    text-align: center;
+
+}
+#form{
+    height: 89.5vh;
+    display: grid;
+    grid-template-columns: 40vw 30vw 30vw ;
+    grid-template-rows: 17vh 15vh 15vh 15vh 1fr;
+}
+#form-container h1{
+    text-shadow: none;
+    font-size: 1.5em;
+    padding: 50px;
+    position: static;
+    grid-column: 1/4;
+}
+#name-container, #released-container, #rating-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    margin-left: 30vh;
+}
+#genres-container{
+    grid-column: 2/3;
+    grid-row: 2/5;
+}
+#platforms-container{
+    grid-column: 3/4;
+    grid-row: 2/5;
+}
+#description-container{
+    grid-column: 1/3;
+    grid-row: 5/6;
+    text-align: left;
+    margin-left: 30vh;
+}
+#form-container label{
+    font-size: 0.9em;
+    padding: 10px;
+}
+#form-container input{
+    font-size: 0.7em;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+#rating-container input{
+    width:80px;
+    height:20px
+}
+#genres-container label{
+    display: block;
+}
+#genres-container select{
+    height: 250px;
+    background-color: transparent;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7em;
+}
+#platforms-container{
+    text-align: left;
+}
+#platforms-label{
+    display: block;
+    margin-left: 10px;
+}
+#platforms-container input{
+    width: 20px;
+}
+#platforms-container label{
+    width: 20px;
+}
+.check-container label:hover{
+    text-shadow:
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px #0fa,
+        0 0 80px #0fa,
+        0 0 90px #0fa;
+}
+#description-container label{
+    display: block;
+}
+#description-container textarea{
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.6em;
+}
+#btn-submit{
+    background-color: transparent;
+    margin:40px 90px;
+    border: none;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1em;
+    animation: flicker 1.5s infinite alternate;
+    cursor: pointer;
+}
+.error{
+    color:red;
+    text-align: left;
+    padding: 0;
+    padding-top: 5px;
+    height: 15px;
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8em;
+}
+.error:hover{
+    text-shadow: none;
+    cursor: default;
+}

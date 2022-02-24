@@ -4,6 +4,7 @@ import { addVideogame, getAllGenres } from "../../actions";
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
+import "./Form.css";
 
 export default function Form() {
     const dispatch = useDispatch();
@@ -22,8 +23,6 @@ export default function Form() {
     const [err, setErr] = useState({});
     function onSubmit(e) {
         e.preventDefault();
-        console.log(inputs);//Borrar
-        console.log(validateInputs());//Borrar
         let errorsArr = validateInputs().arr;
         setInputs({ ...inputs, platforms: trimPlatforms(inputs.platforms) });
         if (!errorsArr.length) {
@@ -45,7 +44,7 @@ export default function Form() {
     }
     function onInputsChange(e) {
         setInputs({ ...inputs, [e.target.name]: e.target.value });
-        validateInputs.errors && setErr(validateInputs().errors);
+        validateInputs().errors && setErr(validateInputs().errors);
 
     }
     function onCheckboxChange(e) {
@@ -78,50 +77,74 @@ export default function Form() {
         }
         return { errors, arr }
     }
-    return (<div>
-        <NavBar/>
-        <form onSubmit={onSubmit} autoComplete="off">
+    return (<div id="form-container">
+        <NavBar />
+        <form id="form" onSubmit={onSubmit} autoComplete="off" list="autocompleteOff">
             <h1>Crear una entrada para un videojuego</h1>
-            <label>Nombre:</label>
-            <input type="text" name="name" value={inputs.name} onChange={onInputsChange} placeholder="Nombre del videojuego" autoComplete="off" />
-            <label>Fecha de lanzamiento:</label>
-            <input type="date" name="released" value={inputs.released} onChange={onInputsChange} />
-            <label>Rating:</label>
-            <input type="number" name="rating" value={inputs.rating} onChange={onInputsChange} step={0.1} />
-            <label>Géneros:</label>
-
-            <select name="genres" value={inputs.genres} onChange={onSelectChange} multiple={true}>
-                {genresArr.map((genre, index) => <option key={index} value={genre}>{genre}</option>)}
-            </select>
-
-            <label>Plataformas:</label>
-            <label htmlFor="chkbox-pc">PC</label>
-            <input type="checkbox" className="chkbox" name="PC" id="chkbox-pc" onChange={onCheckboxChange} />
-            <label htmlFor="chkbox-mac">Macintosh</label>
-            <input type="checkbox" className="chkbox" name="Mac" id="chkbox-mac" onChange={onCheckboxChange} />
-            <label htmlFor="chkbox-linux">Linux</label>
-            <input type="checkbox" className="chkbox" name="Linux" id="chkbox-linux" onChange={onCheckboxChange} />
-            <label htmlFor="chkbox-ps">PlayStation</label>
-            <input type="checkbox" className="chkbox" name="Playstation" id="chkbox-ps" onChange={onCheckboxChange} />
-            <label htmlFor="chkbox-xbox">X-box</label>
-            <input type="checkbox" className="chkbox" name="X-box" id="chkbox-xbox" onChange={onCheckboxChange} />
-            <label htmlFor="chkbox-android">Android</label>
-            <input type="checkbox" className="chkbox" name="Android" id="chkbox-android" onChange={onCheckboxChange} />
-            <label htmlFor="chkbox-ios">iOs</label>
-            <input type="checkbox" className="chkbox" name="iOs" id="chkbox-ios" onChange={onCheckboxChange} />
-            <label htmlFor="chkbox-atari">Atari</label>
-            <input type="checkbox" className="chkbox" name="Atari" id="chkbox-atari" onChange={onCheckboxChange} />
-            <label htmlFor="chkbox-sega">Sega</label>
-            <input type="checkbox" className="chkbox" name="Sega" id="chkbox-sega" onChange={onCheckboxChange} />
-            <label>Descripción:</label>
-            <textarea name="description" value={inputs.description} cols="50" rows="5" onChange={onInputsChange}></textarea>
-            <button type="submit">Crear videojuego</button>
-            <br />
-            <br />
-            {err.name && <span>{err.name}</span>}
-            <br />
-            <br />
-            {err.rating && <span>{err.rating}</span>}
+            <div id="name-container">
+                <label>Nombre:</label>
+                <input type="text" name="name" value={inputs.name} onChange={onInputsChange} placeholder="Nombre del videojuego" autoComplete="off" />
+                {err.name && <span className="error">{err.name}</span>}
+            </div>
+            <div id="released-container">
+                <label>Fecha de lanzamiento:</label>
+                <input type="date" name="released" value={inputs.released} onChange={onInputsChange} />
+            </div>
+            <div id="rating-container">
+                <label>Rating:</label>
+                <input type="number" name="rating" value={inputs.rating} onChange={onInputsChange} step={0.1} />
+                {err.rating && <span>{err.rating}</span>}
+            </div>
+            <div id="genres-container">
+                <label>Géneros:</label>
+                <select name="genres" value={inputs.genres} onChange={onSelectChange} multiple={true}>
+                    {genresArr.map((genre, index) => <option key={index} value={genre}>{genre}</option>)}
+                </select>
+            </div>
+            <div id="platforms-container">
+                <label id="platforms-label">Plataformas:</label>
+                <div className="check-container">
+                    <input type="checkbox" className="chkbox" name="PC" id="chkbox-pc" onChange={onCheckboxChange} />
+                    <label htmlFor="chkbox-pc">PC</label>
+                </div>
+                <div className="check-container">
+                    <input type="checkbox" className="chkbox" name="Mac" id="chkbox-mac" onChange={onCheckboxChange} />
+                    <label htmlFor="chkbox-mac">Macintosh</label>
+                </div>
+                <div className="check-container">
+                    <input type="checkbox" className="chkbox" name="Linux" id="chkbox-linux" onChange={onCheckboxChange} />
+                    <label htmlFor="chkbox-linux">Linux</label>
+                </div>
+                <div className="check-container">
+                    <input type="checkbox" className="chkbox" name="Playstation" id="chkbox-ps" onChange={onCheckboxChange} />
+                    <label htmlFor="chkbox-ps">PlayStation</label>
+                </div>
+                <div className="check-container">
+                    <input type="checkbox" className="chkbox" name="X-box" id="chkbox-xbox" onChange={onCheckboxChange} />
+                    <label htmlFor="chkbox-xbox">X-box</label>
+                </div>
+                <div className="check-container">
+                    <input type="checkbox" className="chkbox" name="Android" id="chkbox-android" onChange={onCheckboxChange} />
+                    <label htmlFor="chkbox-android">Android</label>
+                </div>
+                <div className="check-container">
+                    <input type="checkbox" className="chkbox" name="iOs" id="chkbox-ios" onChange={onCheckboxChange} />
+                    <label htmlFor="chkbox-ios">iOs</label>
+                </div>
+                <div className="check-container">
+                    <input type="checkbox" className="chkbox" name="Atari" id="chkbox-atari" onChange={onCheckboxChange} />
+                    <label htmlFor="chkbox-atari">Atari</label>
+                </div>
+                <div className="check-container">
+                    <input type="checkbox" className="chkbox" name="Sega" id="chkbox-sega" onChange={onCheckboxChange} />
+                    <label htmlFor="chkbox-sega">Sega</label>
+                </div>
+            </div>
+            <div id="description-container">
+                <label>Descripción:</label>
+                <textarea name="description" value={inputs.description} cols="70" rows="10" onChange={onInputsChange}></textarea>
+            </div>
+            <button id="btn-submit" type="submit">Crear<br /><br />videojuego</button>
         </form>
     </div>);
 }
