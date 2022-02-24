@@ -1,20 +1,29 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import NavBar from "../NavBar/NavBar";
+import "./Detail.css";
 export default function Detail() {
-    const detail=useSelector((state)=>state.gameDetail)
-    return (<div>
-        <img src={detail.img} alt="videogame image" />
-        <h1>{detail.name}</h1>
-        <p>Géneros</p>
-        <p>{detail.genres}</p>
-        <p>Plataformas</p>
-        <p>{detail.platforms}</p>
-        <p>Fecha de lanzamiento</p>
-        <p>{detail.released}</p>
-        <p>Rating</p>
-        <p>{detail.rating}</p>
-        <p><a href={`https://www.google.com/search?q=${detail.name}&tbm=shop`} target="_blank"> Dónde comprar</a></p>
-        <p>Descripción</p>
-        <p>{detail.description}</p>
+    const detail = useSelector((state) => state.gameDetail)
+    return (<div id="detail-container">
+        <NavBar />
+        <div id="detail-wraper">
+            <div id="detail-img">
+                <img src={detail.img} alt="videogame image" />
+            </div>
+
+            <h1>{detail.name}</h1>
+            <p>Géneros:</p>
+            <p>{detail.genres}</p>
+            <p>Plataformas:</p>
+            <p>{detail.platforms}</p>
+            <p>Fecha de lanzamiento:</p>
+            <p>{detail.released}</p>
+            <p>Rating:</p>
+            <p>{detail.rating}</p>
+            <p><a href={`https://www.google.com/search?q=${detail.name}&tbm=shop`} target="_blank"> Dónde comprar</a></p>
+            <p>Descripción</p>
+            <p>{detail.description}</p>
+
+        </div>
     </div>);
 }

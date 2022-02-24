@@ -1,0 +1,39 @@
+#detail-container{
+    background-image: url("../../Images/Fondo\ de\ pantalla.png");
+    width: 100vw;
+    height: 100vh;
+    box-shadow: inset 100vw 0vh rgba(0, 0, 0, 0.8);
+}
+#detail-img{
+    width: 50vw;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+#detail-img img{
+    max-width: 100%;
+    max-height: 100%;
+}
+#detail-info{
+    width: 50vw;
+    float: right;
+    margin-top: 20px;
+ }
+ #detail-img~h1{
+     text-shadow: none;
+     font-size: 1.5em;
+     font-weight: bolder;
+     margin: 20px;
+     padding: 0;
+     position: static;
+    }
+#detail-img~p{
+        text-shadow: none;
+        font-size: 0.8em;
+        margin: 10px;
+        padding: 0;
+        position: static;
+        text-align: justify;
+}
