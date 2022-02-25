@@ -12,6 +12,9 @@ export default function NavBar() {
         dispatch(setLoading(true));
         dispatch(getByName(inp));
     }
+    function onEnterPress(e) {
+        (e.code==="Enter" || e.code==="NumpadEnter") && onSearchClick();
+    }
     return (
         <div id="navbar-container">
             <img id="img-icon" src={icon} alt="icon" />
@@ -19,8 +22,8 @@ export default function NavBar() {
                 <Link to="/home"><span>Inicio</span></Link>
                 <Link to="/create"><span>Añadir videojuego</span></Link>
             </div>
-            <div id="searchbar">
-                <input type="text" placeholder="Nombre del videojuego..." value={inp} onChange={({ target: { value } }) => setInput(value)} />
+            <div id="searchbar" onSubmit={onSearchClick}>
+                <input id="input-navbar" type="text" placeholder="Nombre del videojuego..." value={inp} onChange={({ target: { value } }) => setInput(value)} onKeyUp={onEnterPress}/>
                 <span onClick={onSearchClick}>Buscar</span>
             </div>
         </div>
