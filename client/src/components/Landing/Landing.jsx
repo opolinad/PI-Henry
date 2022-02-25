@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./landing.css";
-import mainImage from "../../Images/Imagen fondo.png";
 
 export default function LandingPage() {
     return (
