@@ -5,7 +5,7 @@ const {videogameDetail, createVideogame} = require("../utils/videogame");
     router.get('/:idVideogame',async (req,res)=>{
         const {idVideogame}=req.params;
         let vgDetail = await videogameDetail(idVideogame);
-        res.send(vgDetail);
+        vgDetail?res.send(vgDetail):res.send({msg:"El videojuego no se encontró"});
     })
     router.post("/",(req,res)=>{
         const {name, description, released, rating, genres, platforms}=req.body;

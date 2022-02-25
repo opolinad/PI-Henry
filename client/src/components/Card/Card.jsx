@@ -6,13 +6,9 @@ import "./Card.css";
 
 export default function Card(props) {
     const dispatch=useDispatch();
-    function onGameClick(e) {
-        dispatch(setLoading(true));
-        dispatch(getDetail(props.id));
-    }
     return (
-        <Link to={`/details/${props.name}`}>
-            <div id="card-container" onClick={onGameClick} >
+        <Link to={`/details/${props.id}`}>
+            <div id="card-container">
                 <img src={props.img} alt="videogame image" />
                 <p>{`${props.num + 1}. ${props.name}`}</p>
                 <p>{`Géneros: ${props.genres}`}</p>

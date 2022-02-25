@@ -50,3 +50,17 @@
     padding: 0;
     text-shadow: none;
 }
+#img-not-found-detail{
+    max-height: 300px;
+    display: block;
+    margin:100px auto;
+    margin-bottom: 20px;
+}
+#p-not-found-detail{
+    margin:0;
+    padding: 0;
+    position: static;
+    text-shadow: none;
+    color: white;
+    text-align: center;
+}

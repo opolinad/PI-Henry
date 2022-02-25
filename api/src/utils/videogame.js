@@ -17,7 +17,6 @@ const videogameDetail=async (id)=>{
             rating:result.data?result.data.rating:result.dataValues.rating,
             platforms:result.data?result.data.parent_platforms.map(platform=>platform.platform.name).join(" "):result.dataValues.platforms
         }
-        console.log(gameDetails);//Borrar
         return gameDetails;
     } catch (error) {
         console.log(error);
