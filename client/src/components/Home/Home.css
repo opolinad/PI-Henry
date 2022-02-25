@@ -24,3 +24,13 @@
     position: static;
     text-shadow: none;
 }
+#img-not-found{
+    max-height: 300px;
+    display: block;
+}
+#p-not-found{
+    margin:0;
+    padding: 0;
+    position: static;
+    text-shadow: none;
+}

@@ -6,12 +6,13 @@ import Filter from "../Filter/Filter";
 import NavBar from "../NavBar/NavBar";
 import Pages from "../Pages/Pages";
 import loadingGif from "../../Images/Yoda animation.gif"
+import notFoundGif from "../../Images/Mario not found.gif"
 import "./Home.css";
 
 export default function Home() {
     const dispatch = useDispatch();
     const videogames = useSelector((state) => state.videogamesFilter);
-    const loading = useSelector((state=>state.loading));
+    const loading = useSelector((state => state.loading));
     const [gamesToShow, setGamesToShow] = useState(100);
     const [resultsPerPage, setResultsPerPage] = useState(15);
     const [actualPage, setActualPage] = useState(1);
@@ -40,12 +41,14 @@ export default function Home() {
             <Filter modifyGamesToShow={modifyGamesToShow} modifyResultsPerPage={modifyResultsPerPage} gamesToShow={gamesToShow} resultsPerPage={resultsPerPage} modifyActualPage={modifyActualPage} modifyOrdered={modifyOrdered} />
 
             <div id="cards-container">
-                {loading && <img id="img-loading" src={loadingGif}/>}
+                {loading && <img id="img-loading" src={loadingGif} />}
                 {loading && <p id="p-loading">Yoda está cargando la información</p>}
-                {!loading && videogames.slice((actualPage - 1) * resultsPerPage, (actualPage - 1) * resultsPerPage + resultsPerPage).map((game, index) => <Card key={index} num={index + (actualPage - 1) * resultsPerPage} id={game.id} name={game.name} img={game.img} genres={game.genres} rating={game.rating} />)}
+                {(!loading && !Array.isArray(videogames)) && <img id="img-not-found" src={notFoundGif} />}
+                {(!loading && !Array.isArray(videogames)) && <p id="p-not-found">{videogames}</p>}
+                {(!loading && Array.isArray(videogames)) && videogames.slice((actualPage - 1) * resultsPerPage, (actualPage - 1) * resultsPerPage + resultsPerPage).map((game, index) => <Card key={index} num={index + (actualPage - 1) * resultsPerPage} id={game.id} name={game.name} img={game.img} genres={game.genres} rating={game.rating} />)}
             </div>
 
-            <Pages resultsPerPage={resultsPerPage} modifyActualPage={modifyActualPage} actualPage={actualPage}/>
+            {(!loading && Array.isArray(videogames)) && <Pages resultsPerPage={resultsPerPage} modifyActualPage={modifyActualPage} actualPage={actualPage} />}
         </div>
     );
 }
