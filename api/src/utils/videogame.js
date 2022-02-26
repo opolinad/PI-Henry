@@ -9,7 +9,7 @@ const videogameDetail=async (id)=>{
         await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`):
         await Videogame.findByPk(id,{include:Genre});
         let gameDetails={
-            img:result.data?result.data.background_image:"https://media.wired.com/photos/603847ccf322ee1eea0074d1/4:3/w_1800,h_1350,c_limit/wired-games-coding-blackness.jpg",
+            img:result.data?result.data.background_image:result.dataValues.img,
             name:result.data?result.data.name:result.dataValues.name,
             genres:result.data?result.data.genres.map(genre=>genre.name).join(" "):result.dataValues.genres.map(genre=>genre.dataValues.name).join(" "),
             description: result.data?result.data.description_raw:result.dataValues.description,
@@ -23,14 +23,15 @@ const videogameDetail=async (id)=>{
     }
 }
 
-const createVideogame = async (name, description, released, rating, genres, platforms)=>{
+const createVideogame = async (name, description, released, rating, genres, platforms, img)=>{
     const game = await Videogame.findOrCreate({
         where:{
             name,
             description,
             released,
             rating,
-            platforms
+            platforms,
+            img
         }
     });
     genres.map(genre=>game[0].addGenres(genre));

@@ -18,7 +18,8 @@ export default function Form() {
         rating: 0,
         genres: [],
         platforms: "",
-        description: ""
+        description: "",
+        img:""
     })
     const [err, setErr] = useState({});
     function onSubmit(e) {
@@ -33,7 +34,8 @@ export default function Form() {
                 rating: 0,
                 genres: [],
                 platforms: "",
-                description: ""
+                description: "",
+                img:""
             });
             for (const checkbox of document.getElementsByClassName("chkbox")) {
                 checkbox.checked = false;
@@ -94,6 +96,10 @@ export default function Form() {
                 <label>Rating:</label>
                 <input type="number" name="rating" value={inputs.rating} onChange={onInputsChange} step={0.1} />
                 {err.rating && <span>{err.rating}</span>}
+            </div>
+            <div id="img-url-container">
+                <label>URL imagen:</label>
+                <input type="text" name="img" value={inputs.img} onChange={onInputsChange}/>
             </div>
             <div id="genres-container">
                 <label>Géneros:</label>

@@ -20,7 +20,7 @@ const getAllVideogames = async (numGames = 100) => {
         return games.map(game => ({
             id: game.id,
             name: game.name,
-            img:game.background_image?game.background_image:"https://media.wired.com/photos/603847ccf322ee1eea0074d1/4:3/w_1800,h_1350,c_limit/wired-games-coding-blackness.jpg",
+            img:game.background_image?game.background_image:game.img,
             genres: game.genres.map(genre => genre.name).join(" "),
             rating: game.rating,
             created: game.created ? game.created : false
@@ -47,7 +47,7 @@ const getVideogamesByName = async (name) => {
           return games.map(game=>({
               id:game.id,
               name:game.name,
-              img:game.background_image?game.background_image:"https://media.wired.com/photos/603847ccf322ee1eea0074d1/4:3/w_1800,h_1350,c_limit/wired-games-coding-blackness.jpg",
+              img:game.background_image?game.background_image:game.img,
               genres: game.genres.map(genre=>genre.name).join(" "),
               rating: game.rating
           }));
