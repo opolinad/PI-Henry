@@ -1,15 +1,17 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { getByName, setLoading } from "../../actions";
 import "./NavBar.css";
 import icon from "../../Images/icono.png";
 export default function NavBar() {
     const [inp, setInput] = useState("");
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     function onSearchClick() {
         dispatch(setLoading(true));
+        navigate("/home");
         dispatch(getByName(inp));
     }
     function onEnterPress(e) {

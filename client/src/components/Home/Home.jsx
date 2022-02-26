@@ -18,10 +18,15 @@ export default function Home() {
     const [actualPage, setActualPage] = useState(1);
     const [ordered, setOrdered] = useState(false);
     useEffect(() => {
-        dispatch(setLoading(true));
-        dispatch(getAllGenres());
-        dispatch(getAllVideogames(gamesToShow));
-        setOrdered(false);
+        if(loading){
+            dispatch(getAllGenres());
+            setOrdered(false);
+        }else{
+            dispatch(setLoading(true));
+            dispatch(getAllGenres());
+            dispatch(getAllVideogames(gamesToShow));
+            setOrdered(false);
+        }
     }, [gamesToShow, resultsPerPage])
     function modifyGamesToShow(games) {
         setGamesToShow(games);
@@ -37,14 +42,14 @@ export default function Home() {
     }
     return (
         <div id="home-container">
-            <NavBar />
+            <NavBar/>
             <Filter modifyGamesToShow={modifyGamesToShow} modifyResultsPerPage={modifyResultsPerPage} gamesToShow={gamesToShow} resultsPerPage={resultsPerPage} modifyActualPage={modifyActualPage} modifyOrdered={modifyOrdered} />
 
             <div id="cards-container">
                 {loading && <img id="img-loading" src={loadingGif} />}
                 {loading && <p id="p-loading">Yoda está cargando la información</p>}
                 {(!loading && !Array.isArray(videogames)) && <img id="img-not-found" src={notFoundGif} />}
-                {(!loading && !Array.isArray(videogames)) && <p id="p-not-found">{videogames}</p>}
+                {(!loading && !Array.isArray(videogames)) && <p id="p-not-found">No se ha encontrado ningún juego que coincida con los parámetros de búsqueda</p>}
                 {(!loading && Array.isArray(videogames)) && videogames.slice((actualPage - 1) * resultsPerPage, (actualPage - 1) * resultsPerPage + resultsPerPage).map((game, index) => <Card key={index} num={index + (actualPage - 1) * resultsPerPage} id={game.id} name={game.name} img={game.img} genres={game.genres} rating={game.rating} />)}
             </div>
 
