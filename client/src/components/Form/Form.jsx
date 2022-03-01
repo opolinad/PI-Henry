@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import "./Form.css";
 
+
 export default function Form() {
     const dispatch = useDispatch();
     useEffect(() => {
@@ -19,7 +20,7 @@ export default function Form() {
         genres: [],
         platforms: "",
         description: "",
-        img:""
+        img: ""
     })
     const [err, setErr] = useState({});
     function onSubmit(e) {
@@ -35,7 +36,7 @@ export default function Form() {
                 genres: [],
                 platforms: "",
                 description: "",
-                img:""
+                img: ""
             });
             for (const checkbox of document.getElementsByClassName("chkbox")) {
                 checkbox.checked = false;
@@ -68,7 +69,7 @@ export default function Form() {
                 if (!inputs[input]) errors[input] = "Debe seleccionar al menos una plataforma";
             } else {
                 if (!inputs[input]) errors[input] = `El campo ${input} no puede estar vacío`;
-                if (input === "name" && !/^[A-Za-z0-9 ]+$/.test(inputs[input]) && inputs[input] !== "") errors[input] = "El nombre no puede contener caracterres especiales";
+                if (input === "name" && !/^[A-Za-z0-9 ]+$/.test(inputs[input]) && inputs[input] !== "") errors[input] = "El nombre no puede contener caracteres especiales";
             }
         }
         if (Object.keys(errors).length) {
@@ -84,8 +85,8 @@ export default function Form() {
         <form id="form" onSubmit={onSubmit} autoComplete="off" list="autocompleteOff">
             <h1>Crear una entrada para un videojuego</h1>
             <div id="name-container">
-                <label>Nombre:</label>
-                <input type="text" name="name" value={inputs.name} onChange={onInputsChange} placeholder="Nombre del videojuego" autoComplete="off" />
+                <label htmlFor="name">Nombre:</label>
+                <input id="name" type="text" name="name" value={inputs.name} onChange={onInputsChange} placeholder="Nombre del videojuego" autoComplete="off" />
                 {err.name && <span className="error">{err.name}</span>}
             </div>
             <div id="released-container">
@@ -99,7 +100,7 @@ export default function Form() {
             </div>
             <div id="img-url-container">
                 <label>URL imagen:</label>
-                <input type="text" name="img" value={inputs.img} onChange={onInputsChange}/>
+                <input type="text" name="img" value={inputs.img} onChange={onInputsChange} />
             </div>
             <div id="genres-container">
                 <label>Géneros:</label>
@@ -150,7 +151,7 @@ export default function Form() {
                 <label>Descripción:</label>
                 <textarea name="description" value={inputs.description} cols="70" rows="10" onChange={onInputsChange}></textarea>
             </div>
-            <button id="btn-submit" type="submit">Crear<br /><br />videojuego</button>
+            <button id="btn-submit" type="submit">Crear</button>
         </form>
     </div>);
 }

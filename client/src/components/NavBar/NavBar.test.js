@@ -20,7 +20,7 @@ describe("<NavBar />", () => {
     });
 
     it("Deberia renderizar Dos <Link />", () => {
-        expect(wrapper.find("Link")).toHaveLength(2);
+        expect(wrapper.find(Link)).toHaveLength(2);
     });
     it('El primer Link debe tener el texto "Inicio" y cambiar la ruta hacia "/home".', () => {
       //el orden donde declaran los Links es importante
