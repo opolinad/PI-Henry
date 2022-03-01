@@ -1,4 +1,3 @@
-// falta hacer la verificación de un filtro sobre otro
 import React from 'react';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
