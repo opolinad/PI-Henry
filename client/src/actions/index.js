@@ -8,6 +8,7 @@ export const GET_ALL_GENRES = "GET_ALL_GENRES";
 export const ADD_VIDEOGAME = "ADD_VIDEOGAME";
 export const ORDER = "ORDER";
 export const LOADING="LOADING";
+export const UNMOUNT="UNMOUNT";
 
 export function getAllVideogames(gamesQty) {
     return async (dispatch) => {
@@ -57,4 +58,7 @@ export function orderArray(condition) {
 }
 export function setLoading(status) {
     return { type: LOADING, payload:status };
+}
+export function unmountDetail() {
+    return({type: UNMOUNT});
 }

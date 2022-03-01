@@ -1,11 +1,11 @@
-import { GET_ALL, GET_BY_GENRE, GET_BY_CONDITION, GET_DETAIL, GET_BY_NAME, GET_ALL_GENRES, ADD_VIDEOGAME, ORDER, LOADING } from "../actions";
+import { GET_ALL, GET_BY_GENRE, GET_BY_CONDITION, GET_DETAIL, GET_BY_NAME, GET_ALL_GENRES, ADD_VIDEOGAME, ORDER, LOADING, UNMOUNT } from "../actions";
 
 const initialState = {
     videogames: [],
     videogamesFilter: [],
     genres: [],
     gameDetail: {},
-    loading:false
+    loading: false
 }
 
 function reducer(state = initialState, action) {
@@ -35,6 +35,8 @@ function reducer(state = initialState, action) {
             return { ...state, genres: action.payload };
         case ADD_VIDEOGAME:
             return { ...state };
+        case UNMOUNT:
+            return{...state, gameDetail:{}}
         case ORDER:
             arr = state.videogames !== state.videogamesFilter ? state.videogamesFilter : state.videogames;
             switch (action.payload) {
@@ -73,7 +75,7 @@ function reducer(state = initialState, action) {
             }
             return { ...state, videogamesFilter: arr };
         case LOADING:
-            return {...state, loading:action.payload};
+            return { ...state, loading: action.payload };
         default:
             return state;
     }

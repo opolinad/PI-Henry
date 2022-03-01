@@ -5,23 +5,31 @@ import loadingGif from "../../Images/Yoda animation.gif"
 import notFoundGif from "../../Images/Mario not found.gif"
 import "./Detail.css";
 import { useParams } from "react-router-dom";
-import { getDetail, setLoading } from "../../actions";
+import { getDetail, setLoading, unmountDetail } from "../../actions";
+import { useEffect } from "react";
 
 export default function Detail() {
     const detail = useSelector((state) => state.gameDetail);
     const loading = useSelector((state) => state.loading);
     const dispatch = useDispatch();
     let { idJuego } = useParams();
+    useEffect(()=>{
+        dispatch(setLoading(true));
+        dispatch(getDetail(idJuego));
+        return (()=>{
+            dispatch(unmountDetail())
+        });
+    }, [])
     if (detail.hasOwnProperty("msg")) {
         return (<div id="detail-container">
             <NavBar />
             <img id="img-not-found-detail" src={notFoundGif} />
             <p id="p-not-found-detail">No se ha encontrado ningún juego que coincida con los parámetros de búsqueda</p>
         </div>);
-    } else if (!detail.name) {
+    } /* else if (!detail.name) {
         dispatch(setLoading(true));
         dispatch(getDetail(idJuego));
-    }
+    } */
     if (loading) {
         return (<div id="detail-container">
             <NavBar />
