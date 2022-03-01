@@ -11,7 +11,7 @@ export const LOADING="LOADING";
 
 export function getAllVideogames(gamesQty) {
     return async (dispatch) => {
-        let url = gamesQty ? `http://localhost:3001/videogames?gamesQty=${gamesQty}` : `http://localhost:3001/videogames`
+        let url = gamesQty ? `/videogames?gamesQty=${gamesQty}` : `/videogames`
         let games = await axios.get(url);
         dispatch(setLoading(false));
         return dispatch({ type: GET_ALL, payload: games.data })
@@ -27,27 +27,27 @@ export function getByCondition(condition) {
 
 export function getDetail(id) {
     return async (dispatch) => {
-        let gameDetail = await axios.get(`http://localhost:3001/videogame/${id}`);
+        let gameDetail = await axios.get(`/videogame/${id}`);
         dispatch(setLoading(false));
         return dispatch({ type: GET_DETAIL, payload: gameDetail.data })
     }
 }
 export function getByName(name) {
     return async (dispatch) => {
-        let games = await axios.get(`http://localhost:3001/videogames?name=${name}`);
+        let games = await axios.get(`/videogames?name=${name}`);
         dispatch(setLoading(false));
         return dispatch({ type: GET_BY_NAME, payload: games.data })
     }
 }
 export function getAllGenres() {
     return async (dispatch) => {
-        let genres = await axios.get(`http://localhost:3001/genres`);
+        let genres = await axios.get(`/genres`);
         return dispatch({ type: GET_ALL_GENRES, payload: genres.data })
     }
 }
 export function addVideogame(obj) {
     return async (dispatch) => {
-        let response = await axios.post(`http://localhost:3001/videogame`, obj);
+        let response = await axios.post(`/videogame`, obj);
         alert(response.data);
         return response;
     }
