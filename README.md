@@ -32,6 +32,6 @@ Detail page
 
 ![image](https://user-images.githubusercontent.com/92406653/157563521-5f1aeae4-80ea-453f-af0c-d3e7c24418b3.png)
 
-Create videogamepage
+Create videogame page
 
 ![image](https://user-images.githubusercontent.com/92406653/157563579-89c368b5-6a34-4195-ba92-9a3abc930614.png)
