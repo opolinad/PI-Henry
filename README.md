@@ -24,4 +24,14 @@ Landing page
 
 ![image](https://user-images.githubusercontent.com/92406653/157560769-b92be9df-258f-4105-b0be-a99aafbbb70e.png)
 
+Home page
 
+![image](https://user-images.githubusercontent.com/92406653/157563372-b29d41a5-f0be-4f58-a87e-5f37da695b2a.png)
+
+Detail page
+
+![image](https://user-images.githubusercontent.com/92406653/157563521-5f1aeae4-80ea-453f-af0c-d3e7c24418b3.png)
+
+Create videogamepage
+
+![image](https://user-images.githubusercontent.com/92406653/157563579-89c368b5-6a34-4195-ba92-9a3abc930614.png)
