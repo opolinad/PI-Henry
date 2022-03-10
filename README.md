@@ -14,8 +14,14 @@ React, Redux, CSS, JavaScript
 
 Node.js, Sequelize, Express,  PostgreSQL
 
-### Wanna see it?
+## Wanna see it?
 
 **Here is the link for the app:** https://pi-henry.vercel.app/
+
+## Screenshots
+
+Landing page
+
+![image](https://user-images.githubusercontent.com/92406653/157560769-b92be9df-258f-4105-b0be-a99aafbbb70e.png)
 
 
